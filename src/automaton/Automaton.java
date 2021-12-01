@@ -17,7 +17,7 @@ public class Automaton {
      * Constructor of the class
      * @param name the name of the automate
      */
-    public Automate(String name) {
+    public Automaton(String name) {
         this.name = name;
         this.S = new HashSet<>();
         this.Sf = new HashSet<>();

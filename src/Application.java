@@ -1,6 +1,6 @@
 
 
-import automaton.Automate;
+import automaton.Automaton;
 import automaton.State;
 
 import java.io.*;
@@ -82,33 +82,33 @@ public class Application {
                     break;
                 case 3:
                     System.out.println("Your choice : JJ/MM/AAAA");
-                    load_automate_par_fichier("automates/JJMMAAAA.txt");
+                    load_automate_par_fichier("fileAutomaton/JJMMAAAA.txt");
                     pause(sc);
                     break;
                 case 4:
                     System.out.println("Your choice : Email address");
-                    load_automate_par_fichier("automates/EMAIL.txt");
+                    load_automate_par_fichier("fileAutomaton/EMAIL.txt");
                     pause(sc);
                     break;
                 case 5:
                     System.out.println("Your choice : Polynomial");
-                    load_automate_par_fichier("automates/POLYNOME.txt");
+                    load_automate_par_fichier("fileAutomaton/POLYNOME.txt");
                     pause(sc);
                     break;
                 case 6:
                     System.out.println("Your choice : French licence plate");
-                    load_automate_par_fichier("automates/PLAQUE.txt");
+                    load_automate_par_fichier("fileAutomaton/PLAQUE.txt");
                     pause(sc);
                     break;
                 case 7:
                     System.out.println("Your choice : HH:MM:SS");
-                    load_automate_par_fichier("automates/HHMMSS.txt");
+                    load_automate_par_fichier("fileAutomaton/HHMMSS.txt");
                     pause(sc);
                     break;
                 case 8:
-                    System.out.println("Give the name of your file in the automates folder: ");
+                    System.out.println("Give the name of your file in the fileAutomaton folder: ");
                     String name = sc.next();
-                    load_automate_par_fichier("automates/"+name);
+                    load_automate_par_fichier("fileAutomaton/"+name);
                     pause(sc);
                     break;
                 case 9:
@@ -125,7 +125,7 @@ public class Application {
      */
     private static void load_smiley(){
         Scanner sc = new Scanner(System.in);
-        Automate smiley = new Automate("Smiley");
+        Automaton smiley = new Automaton("Smiley");
         smiley.setAlphabet(new ArrayList<>(Arrays.asList(':',';','-','=',')','(')));
         for(int i =0; i <5; i++){
             State state = new State("E"+i);
@@ -173,7 +173,7 @@ public class Application {
      */
     private static void load_HHMM(){
         Scanner sc = new Scanner(System.in);
-        Automate hhmm = new Automate("HHMM");
+        Automaton hhmm = new Automaton("HHMM");
         hhmm.setAlphabet(new ArrayList<>(Arrays.asList('0','1','2','3','4','5','6','7','8','9',':')));
         for(int i =0; i <7; i++){
             State state = new State("E"+i);
@@ -255,7 +255,7 @@ public class Application {
     private static void load_automate_par_fichier(String fileName) {
         //Initialization to read the file
         Scanner scan = null;
-        Automate automaton = null;
+        Automaton automaton = null;
         try {
             scan = new Scanner(new File(fileName));
             //Loop: Reads the file to the end
@@ -267,7 +267,7 @@ public class Application {
 
                 //Initialization of the automaton with its nom
                 if (wordLine[0].equals("NAME")) {
-                    automaton = new Automate(wordLine[1]);
+                    automaton = new Automaton(wordLine[1]);
 
                     //Initialization of the alphabet
                 } else if (wordLine[0].equals("ALPHABET")) {
@@ -335,7 +335,7 @@ public class Application {
      * Method to ask whether we display the automaton or not
      * @param automaton the automaton that we want display
      */
-    public static void displayAutomaton(Automate automaton){
+    public static void displayAutomaton(Automaton automaton){
         Scanner sc = new Scanner(System.in);
         System.out.println("Do you want display the automaton ?");
         System.out.println("1. yes");

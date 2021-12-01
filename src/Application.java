@@ -1,109 +1,116 @@
+import automate.Automate;
+import automate.State;
+
 import java.io.*;
 import java.util.*;
 
 public class Application {
     /**
-     * Affiche le menu de l'application
+     * Display the menu of the application
      */
     private static void menu(){
-        System.out.println("----------------Menu de mon TP----------------");
-        System.out.println("1. Smiley (pour reconnaitre un des smileys)");
-        System.out.println("2. HH:MM (pour reconnaitre une heure:minute bien formée)");
-        System.out.println("3. JJ/MM/AAAA (pour reconnaitre une date bien formée)");
-        System.out.println("4. Adresse électronique (pour reconnaitre une adresse électronique bien formée)");
-        System.out.println("5. Polynômes (pour reconnaitre un polynôme bien formé)");
-        System.out.println("6. Plaque d'immatriculation française (pour reconnaitre une plaque d'immatriculation bien formée)");
-        System.out.println("7. HH:MM:SS (pour reconnaitre une heure:minute:seconde bien formée)");
-        System.out.println("8. Charger votre propre automate");
-        System.out.println("9. Arrêt");
-        System.out.println("Votre choix (1-9)?");
-        System.out.println("Je vous demanderez ensuite la chaîne à analyser, Merci");
-        System.out.println("-------------------Fin menu-------------------");
+        System.out.println("-------------------- Menu -------------------");
+        System.out.println("1. Smiley (to recognize one of the smileys)");
+        System.out.println("2. HH:MM (to recognize a well-former hour:minute)");
+        System.out.println("3. JJ/MM/AAAA (to recognize a well-formed date)");
+        System.out.println("4. Email address (to recognize a well-formed email address)");
+        System.out.println("5. Polynomial (to recognize a well-formed polynomial)");
+        System.out.println("6. French licence plate (to recognize a well-formed licence plate)");
+        System.out.println("7. HH:MM:SS (to recognize a well-former hour:minute:seconde)");
+        System.out.println("8. Load your own automaton");
+        System.out.println("9. Quit");
+        System.out.println("Yout choise (1-9)?");
+        System.out.println("Then I will ask you the string to analyze, Thank you");
+        System.out.println("-------------------- Menu -------------------");
     }
 
     /**
-     * Permet de mettre en pause l'application
-     * @param sc un objet scanner
+     * Pauses the application
+     * @param sc an object Scanner
      */
     private static void pause(Scanner sc){
-        System.out.println("Appuyer sur \"n'importe quel touche puis Entrer\" pour passer");
+        System.out.println("Press \"any key then Enter\" to pass");
         sc.next();
     }
 
+    /**
+     * Application of the automaton
+     * @param args possible arguments for the application
+     */
     public static void main(String[] args) {
-        //Crée l'objet Scanner
+        //Create the eobject Scanner
         Scanner sc = new Scanner(System.in);
 
-        //Initialisation des variables de choix
-        int choix = 0;
-        int arret = 9;
+        //Initialization of choice variables
+        int choice = 0;
+        int stop = 9;
 
-        //Boucle : L'application continue de s'éxécuter tant qu'on indique pas clairement de quitter
-        while (choix != arret) {
+        //Loop: The application continues to run until the user press quit
+        while (choice != stop) {
             menu();
-            boolean estNombre = false;
+            boolean isNumber = false;
 
-            //Boucle : tant que le numéro entrée ne correspond pas à l'un des possibilité, on redemande
-            while(!estNombre) {
+            //Loop: as long as the number entered does not correspond to one of the possibilities, we ask again
+            while(!isNumber) {
                 try {
-                    System.out.println("Votre choix : ");
-                    estNombre = true;
-                    choix = Integer.parseInt(sc.next());
-                    if(choix > arret){
-                        System.err.println("Le choix est entre 1 et "+arret);
-                        estNombre = false;
+                    System.out.println("Your choice : ");
+                    isNumber = true;
+                    choice = Integer.parseInt(sc.next());
+                    if(choice > stop){
+                        System.err.println("The choices are between 1 and "+stop);
+                        isNumber = false;
                     }
                 } catch (Exception e) {
-                    estNombre = false;
-                    System.err.println("Pas un nombre");
+                    isNumber = false;
+                    System.err.println("Not a number");
                 }
             }
 
-            //Switch case : Selon le numéro entrée, on éxécute un automate accepteur précis ou on arret l'application
-            switch (choix) {
+            //Switch case: Depending on the number entered, a automaton is run or the application is stopped
+            switch (choice) {
                 case 1:
-                    System.out.println("Votre choix : Smiley");
+                    System.out.println("Your choice : Smiley");
                     load_smiley();
                     pause(sc);
                     break;
                 case 2:
-                    System.out.println("Votre choix : HH:MM");
+                    System.out.println("Your choice : HH:MM");
                     load_HHMM();
                     pause(sc);
                     break;
                 case 3:
-                    System.out.println("Votre choix : JJ/MM/AAAA");
+                    System.out.println("Your choice : JJ/MM/AAAA");
                     load_automate_par_fichier("automates/JJMMAAAA.txt");
                     pause(sc);
                     break;
                 case 4:
-                    System.out.println("Votre choix : Adresse électronique");
+                    System.out.println("Your choice : Email address");
                     load_automate_par_fichier("automates/EMAIL.txt");
                     pause(sc);
                     break;
                 case 5:
-                    System.out.println("Votre choix : Polynômes");
+                    System.out.println("Your choice : Polynomial");
                     load_automate_par_fichier("automates/POLYNOME.txt");
                     pause(sc);
                     break;
                 case 6:
-                    System.out.println("Votre choix : Plaque d'immatriculation");
+                    System.out.println("Your choice : French licence plate");
                     load_automate_par_fichier("automates/PLAQUE.txt");
                     pause(sc);
                     break;
                 case 7:
-                    System.out.println("Votre choix : HH:MM:SS");
+                    System.out.println("Your choice : HH:MM:SS");
                     load_automate_par_fichier("automates/HHMMSS.txt");
                     pause(sc);
                     break;
                 case 8:
-                    System.out.println("Donner le nom de votre fichier placer dans le dossier automates : ");
-                    String nom = sc.next();
-                    load_automate_par_fichier("automates/"+nom);
+                    System.out.println("Give the name of your file in the automates folder: ");
+                    String name = sc.next();
+                    load_automate_par_fichier("automates/"+name);
                     pause(sc);
                     break;
                 case 9:
-                    System.out.println("Arrêt");
+                    System.out.println("Quit");
                     sc.close();
                     System.exit(0);
                     break;
@@ -112,241 +119,240 @@ public class Application {
     }
 
     /**
-     * L'automate pour reconnaitre un Smiley
+     * The automaton to recognize a Smiley
      */
     private static void load_smiley(){
         Scanner sc = new Scanner(System.in);
         Automate smiley = new Automate("Smiley");
         smiley.setAlphabet(new ArrayList<>(Arrays.asList(':',';','-','=',')','(')));
         for(int i =0; i <5; i++){
-            State etat = new State("E"+i);
-            smiley.addState(etat);
+            State state = new State("E"+i);
+            smiley.addState(state);
         }
 
         for(int i = 0; i <5; i++){
-            State etat =smiley.getState("E"+i);
+            State state =smiley.getState("E"+i);
             switch (i){
                 case 0:
-                    smiley.setEtatInitiale(smiley.getState("E0"));
-                    smiley.addTransition(etat,':', smiley.getState("E1"));
-                    smiley.addTransition(etat,';', smiley.getState("E2"));
+                    smiley.setInitialState(smiley.getState("E0"));
+                    smiley.addTransition(state,':', smiley.getState("E1"));
+                    smiley.addTransition(state,';', smiley.getState("E2"));
                     break;
                 case 1:
-                    smiley.addTransition(etat,'-', smiley.getState("E3"));
-                    smiley.addTransition(etat,'=', smiley.getState("E3"));
+                    smiley.addTransition(state,'-', smiley.getState("E3"));
+                    smiley.addTransition(state,'=', smiley.getState("E3"));
                     break;
                 case 2:
-                    smiley.addTransition(etat,'-', smiley.getState("E3"));
+                    smiley.addTransition(state,'-', smiley.getState("E3"));
                     break;
                 case 3:
-                    smiley.addTransition(etat,'(', smiley.getState("E4"));
-                    smiley.addTransition(etat,')', smiley.getState("E4"));
+                    smiley.addTransition(state,'(', smiley.getState("E4"));
+                    smiley.addTransition(state,')', smiley.getState("E4"));
                     break;
                 case 4:
-                    smiley.setEtatFinal(new ArrayList<>(Arrays.asList(smiley.getState("E4"))));
+                    smiley.setEndState(new ArrayList<>(Arrays.asList(smiley.getState("E4"))));
                     break;
             }
         }
 
-        voirAutomate(smiley);
+        displayAutomaton(smiley);
 
-        System.out.println("Votre chaine :");
-        String chaine = sc.next();
-        if(smiley.verifAutomate(chaine)){
+        System.out.println("Your string :");
+        String sentence = sc.next();
+        if(smiley.verifAutomaton(sentence)){
             System.out.println("OK");
         }else{
-            System.out.println("KO");
+            System.err.println("KO");
         }
     }
 
     /**
-     * L'automate pour reconnaitre une heure dans la forme HH:MM
+     * The automaton to recognize an hour in the form HH:MM
      */
     private static void load_HHMM(){
         Scanner sc = new Scanner(System.in);
         Automate hhmm = new Automate("HHMM");
         hhmm.setAlphabet(new ArrayList<>(Arrays.asList('0','1','2','3','4','5','6','7','8','9',':')));
         for(int i =0; i <7; i++){
-            State etat = new State("E"+i);
-            hhmm.addState(etat);
+            State state = new State("E"+i);
+            hhmm.addState(state);
         }
 
         for(int i = 0; i <7; i++){
-            State etat =hhmm.getState("E"+i);
+            State state =hhmm.getState("E"+i);
             switch (i){
                 case 0:
-                    hhmm.setEtatInitiale(hhmm.getState("E0"));
-                    hhmm.addTransition(etat,'0', hhmm.getState("E1"));
-                    hhmm.addTransition(etat,'1', hhmm.getState("E1"));
-                    hhmm.addTransition(etat,'2', hhmm.getState("E2"));
+                    hhmm.setInitialState(hhmm.getState("E0"));
+                    hhmm.addTransition(state,'0', hhmm.getState("E1"));
+                    hhmm.addTransition(state,'1', hhmm.getState("E1"));
+                    hhmm.addTransition(state,'2', hhmm.getState("E2"));
                     break;
                 case 1:
-                    hhmm.addTransition(etat,'0', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'1', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'2', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'3', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'4', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'5', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'6', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'7', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'8', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'9', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'0', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'1', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'2', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'3', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'4', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'5', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'6', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'7', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'8', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'9', hhmm.getState("E3"));
 
                     break;
                 case 2:
-                    hhmm.addTransition(etat,'0', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'1', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'2', hhmm.getState("E3"));
-                    hhmm.addTransition(etat,'3', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'0', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'1', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'2', hhmm.getState("E3"));
+                    hhmm.addTransition(state,'3', hhmm.getState("E3"));
                     break;
                 case 3:
-                    hhmm.addTransition(etat,':', hhmm.getState("E4"));
+                    hhmm.addTransition(state,':', hhmm.getState("E4"));
                     break;
                 case 4:
-                    hhmm.addTransition(etat,'0', hhmm.getState("E5"));
-                    hhmm.addTransition(etat,'1', hhmm.getState("E5"));
-                    hhmm.addTransition(etat,'2', hhmm.getState("E5"));
-                    hhmm.addTransition(etat,'3', hhmm.getState("E5"));
-                    hhmm.addTransition(etat,'4', hhmm.getState("E5"));
-                    hhmm.addTransition(etat,'5', hhmm.getState("E5"));
+                    hhmm.addTransition(state,'0', hhmm.getState("E5"));
+                    hhmm.addTransition(state,'1', hhmm.getState("E5"));
+                    hhmm.addTransition(state,'2', hhmm.getState("E5"));
+                    hhmm.addTransition(state,'3', hhmm.getState("E5"));
+                    hhmm.addTransition(state,'4', hhmm.getState("E5"));
+                    hhmm.addTransition(state,'5', hhmm.getState("E5"));
                     break;
                 case 5:
-                    hhmm.addTransition(etat,'0', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'1', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'2', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'3', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'4', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'5', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'6', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'7', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'8', hhmm.getState("E6"));
-                    hhmm.addTransition(etat,'9', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'0', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'1', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'2', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'3', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'4', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'5', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'6', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'7', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'8', hhmm.getState("E6"));
+                    hhmm.addTransition(state,'9', hhmm.getState("E6"));
                     break;
                 case 6:
-                    hhmm.setEtatFinal(new ArrayList<>(Arrays.asList(hhmm.getState("E6"))));
+                    hhmm.setEndState(new ArrayList<>(Arrays.asList(hhmm.getState("E6"))));
                     break;
             }
         }
 
-        voirAutomate(hhmm);
+        displayAutomaton(hhmm);
 
-        System.out.println("Votre chaine :");
-        String chaine = sc.next();
-        if(hhmm.verifAutomate(chaine)){
+        System.out.println("Your string :");
+        String sentence = sc.next();
+        if(hhmm.verifAutomaton(sentence)){
             System.out.println("OK");
         }else{
-            System.out.println("KO");
+            System.err.println("KO");
         }
     }
 
     /**
-     * Charge un automate quelconque avec un fichier
-     * @param cheminFichier le fichier contenant l'automate
+     * Loads any automaton with a file
+     * @param fileName the file containing the automaton
      */
-    private static void load_automate_par_fichier(String cheminFichier) {
-        //Initialisation pour lire le fichier
-        String nomFichier = cheminFichier;
+    private static void load_automate_par_fichier(String fileName) {
+        //Initialization to read the file
         Scanner scan = null;
-        Automate automate = null;
+        Automate automaton = null;
         try {
-            scan = new Scanner(new File(nomFichier));
-            //Boucle : Lit le fichier de A à Z
+            scan = new Scanner(new File(fileName));
+            //Loop: Reads the file to the end
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
 
-                //Split la ligne obtenue
-                String[] motLigne = line.split(" ");
+                //Split the line
+                String[] wordLine = line.split(" ");
 
-                //Initialisation de l'automate avec son nom
-                if (motLigne[0].equals("NOM")) {
-                    automate = new Automate(motLigne[1]);
+                //Initialization of the automaton with its nom
+                if (wordLine[0].equals("NAME")) {
+                    automaton = new Automate(wordLine[1]);
 
-                    //Initialisation de l'alphabet
-                } else if (motLigne[0].equals("ALPHABET")) {
+                    //Initialization of the alphabet
+                } else if (wordLine[0].equals("ALPHABET")) {
                     ArrayList<Character> alphabet = new ArrayList<>();
-                    for (int i = 1; i < motLigne.length; i++) {
+                    for (int i = 1; i < wordLine.length; i++) {
                         Character c = null;
-                        if (motLigne[i].equals("espace")) {
+                        if (wordLine[i].equals("space")) {
                             c = ' ';
                         } else {
-                            c = motLigne[i].charAt(0);
+                            c = wordLine[i].charAt(0);
                         }
                         alphabet.add(c);
                     }
-                    automate.setAlphabet(alphabet);
+                    automaton.setAlphabet(alphabet);
 
-                    //Initialisation de l'état initiale
-                } else if (motLigne[0].equals("INITIAL")) {
-                    State etatInitiale = automate.getState(motLigne[1]);
-                    automate.setEtatInitiale(etatInitiale);
+                    //Initialization of the initial state
+                } else if (wordLine[0].equals("INITIAL")) {
+                    State etatInitiale = automaton.getState(wordLine[1]);
+                    automaton.setInitialState(etatInitiale);
 
-                    //Initialisaiton des états finaux
-                } else if (motLigne[0].equals("FINAL")) {
+                    //Initialization of the end-states
+                } else if (wordLine[0].equals("FINAL")) {
                     ArrayList<State> finaux = new ArrayList<>();
-                    for (int i = 1; i < motLigne.length; i++) {
-                        State etat = automate.getState(motLigne[i]);
+                    for (int i = 1; i < wordLine.length; i++) {
+                        State etat = automaton.getState(wordLine[i]);
                         finaux.add(etat);
                     }
-                    automate.setEtatFinal(finaux);
+                    automaton.setEndState(finaux);
 
-                    //Initialisation des états et des transitions
+                    //Initialization of states and transitions
                 } else {
-                    if (!automate.containStateNom(motLigne[0])) {
-                        automate.addState(new State(motLigne[0]));
+                    if (!automaton.containStateName(wordLine[0])) {
+                        automaton.addState(new State(wordLine[0]));
                     }
-                    if (!automate.containStateNom(motLigne[2])) {
-                        automate.addState(new State(motLigne[2]));
+                    if (!automaton.containStateName(wordLine[2])) {
+                        automaton.addState(new State(wordLine[2]));
                     }
-                    State etat1 = automate.getState(motLigne[0]);
-                    State etat2 = automate.getState(motLigne[2]);
-                    if (motLigne[1].equals("espace")) {
-                        automate.addTransition(etat1, ' ', etat2);
+                    State state1 = automaton.getState(wordLine[0]);
+                    State state2 = automaton.getState(wordLine[2]);
+                    if (wordLine[1].equals("space")) {
+                        automaton.addTransition(state1, ' ', state2);
                     } else {
-                        automate.addTransition(etat1, motLigne[1].charAt(0), etat2);
+                        automaton.addTransition(state1, wordLine[1].charAt(0), state2);
                     }
                 }
             }
 
             Scanner sc = new Scanner(System.in);
 
-            voirAutomate(automate);
+            displayAutomaton(automaton);
 
-            System.out.println("Votre chaine :");
-            String chaine = sc.next();
-            if (automate.verifAutomate(chaine)) {
+            System.out.println("Your string :");
+            String sentence = sc.nextLine();
+            if (automaton.verifAutomaton(sentence)) {
                 System.out.println("OK");
             } else {
-                System.out.println("KO");
+                System.err.println("KO");
             }
         } catch (FileNotFoundException e) {
-            System.err.println("Fichier introuvable");
+            System.err.println("File not found");
         }
     }
 
     /**
-     * Méthode qui permet de demander si oui ou non on affiche l'automate
-     * @param automate l'automate que l'on veut afficher
+     * Method to ask whether we display the automaton or not
+     * @param automaton the automaton that we want display
      */
-    public static void voirAutomate(Automate automate){
+    public static void displayAutomaton(Automate automaton){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Voulez-vous voir votre automate ?");
-        System.out.println("1. oui");
-        System.out.println("2. non");
+        System.out.println("Do you want display the automaton ?");
+        System.out.println("1. yes");
+        System.out.println("2. no");
 
-        boolean estNombre=false;
-        int choix = 0;
-        while(!estNombre) {
+        boolean isNumber=false;
+        int choice = 0;
+        while(!isNumber) {
             try {
-                estNombre = true;
-                choix = Integer.parseInt(sc.next());
+                isNumber = true;
+                choice = Integer.parseInt(sc.next());
             } catch (Exception e) {
-                estNombre = false;
-                System.err.println("Pas un nombre");
+                isNumber = false;
+                System.err.println("Not a number");
             }
         }
 
-        if(choix == 1){
-            System.out.println(automate.toString());
+        if(choice == 1){
+            System.out.println(automaton.toString());
         }
     }
 }

@@ -1,5 +1,7 @@
-import automate.Automate;
-import automate.State;
+
+
+import automaton.Automate;
+import automaton.State;
 
 import java.io.*;
 import java.util.*;

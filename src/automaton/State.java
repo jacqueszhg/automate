@@ -1,4 +1,4 @@
-package automate;
+package automaton;
 
 import java.util.HashMap;
 import java.util.Objects;

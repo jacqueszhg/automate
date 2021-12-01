@@ -1,4 +1,4 @@
-package automate;
+package automaton;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ import java.util.*;
  * Class that defines an automate
  * @author jacques-zheng
  */
-public class Automate {
+public class Automaton {
     private String name;
     private HashSet<State> S;
     private HashSet<Character> A;

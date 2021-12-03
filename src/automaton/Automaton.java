@@ -141,14 +141,16 @@ public class Automaton {
      * EN : Automaton acceptor: Checks a string according to the automaton format
      * FR : Accepteur de l'automate : Vérifie une chaine de caractère selon le format de l'automate
      * @param sentence EN : the string to check || FR : la chaine à vérifier
+     * @param language EN : the language for the display || FR : la langue pour l'affichage
      * @return EN : true if the string is in the correct format, otherwise false || FR : true si la chaine est dans le bon format, sinon false
      */
-    public boolean verifAutomaton(String sentence){
+    public boolean verifAutomaton(String sentence, int language){
         State currentState = this.So;
         int i=0;
         Character currentChar = sentence.charAt(0);
         boolean finish = false;
-        while (!finish && currentState != null){
+
+        while (!finish && !currentState.isWell()){
             i++;
             System.out.println(currentState.getName() +" | Character{carac='"+ currentChar+"}");
             currentState = currentState.nextSate(currentChar);
@@ -173,15 +175,27 @@ public class Automaton {
         }
 
 
-        if(currentState == null){
-            System.err.println("Fall into the well");
+        if(currentState.isWell()){
+            if(language == 1){
+                System.err.println("Fall into the well");
+            }else{
+                System.err.println("Tomber dans le puit");
+            }
             return false;
         }else if(i < sentence.length()) {
-            System.err.println("Too much character");
+            if(language == 1){
+                System.err.println("Too much characters");
+            }else{
+                System.err.println("Trop de caractères");
+            }
             return false;
         }
         if(this.Sf.contains(currentState)){
-            System.out.println("Correct format");
+            if(language == 1){
+                System.out.println("Correct format");
+            }else{
+                System.out.println("Format correcte");
+            }
             return true;
         }
         return false;
@@ -221,7 +235,7 @@ public class Automaton {
                 ", \nSo=" + So.getName() +
                 ", \nSf=[" + infoSf +
                 ", \ndelta =[\n"+infoListOutPut+
-                '}';
+                ']';
     }
 
     /**
@@ -249,5 +263,14 @@ public class Automaton {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * EN : Give the name of the automaton
+     * FR : Donne le nom de l'automate
+     * @return EN : the name of the automaton || FR : le nom de l'automate
+     */
+    public String getName() {
+        return name;
     }
 }

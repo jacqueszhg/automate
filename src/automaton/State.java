@@ -66,7 +66,7 @@ public class State {
         if(listOut.containsKey(cle)){
             return listOut.get(cle);
         }
-        return null;
+        return new State("well");
     }
 
     /**
@@ -85,5 +85,14 @@ public class State {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * EN : Determine if the state is a well
+     * FR : Determine if l'état est puit
+     * @return EN : true if it's a well, false otherwise || FR : true si puit, false sinon
+     */
+    public boolean isWell(){
+        return  this.name.equals("well");
     }
 }

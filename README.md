@@ -18,7 +18,7 @@ To execute the code
 java -cp out/production/Automate application.Application
 ```
 ### On an IDE
-Download the project and import it to your IDE, then run it via your IDE.
+Download the project and import it to your IDE, then run it on your IDE.
 
 ## The application
 ### Default automaton

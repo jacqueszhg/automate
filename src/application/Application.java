@@ -91,27 +91,27 @@ public class Application {
                     break;
                 case 3:
                     System.out.println("Your choice : JJ/MM/AAAA");
-                    load_automate_by_file("fileAutomaton/JJMMAAAA.txt");
+                    load_automate_by_file("fileAutomaton/default/JJMMAAAA.txt");
                     pause(sc);
                     break;
                 case 4:
                     System.out.println("Your choice : Email address");
-                    load_automate_by_file("fileAutomaton/EMAIL.txt");
+                    load_automate_by_file("fileAutomaton/default/EMAIL.txt");
                     pause(sc);
                     break;
                 case 5:
                     System.out.println("Your choice : Polynomial");
-                    load_automate_by_file("fileAutomaton/POLYNOME.txt");
+                    load_automate_by_file("fileAutomaton/default/POLYNOME.txt");
                     pause(sc);
                     break;
                 case 6:
                     System.out.println("Your choice : French licence plate");
-                    load_automate_by_file("fileAutomaton/PLAQUE.txt");
+                    load_automate_by_file("fileAutomaton/default/PLAQUE.txt");
                     pause(sc);
                     break;
                 case 7:
                     System.out.println("Your choice : HH:MM:SS");
-                    load_automate_by_file("fileAutomaton/HHMMSS.txt");
+                    load_automate_by_file("fileAutomaton/default/HHMMSS.txt");
                     pause(sc);
                     break;
                 case 8:
@@ -415,16 +415,13 @@ public class Application {
         int n = 5;
         try {
             write = new PrintWriter(new BufferedWriter(new FileWriter("fileAutomaton/baseFile.txt")));
-            write.println("NAME #write here the name of your automaton || Exemple : Automaton1#");
-            write.println("ALPHABET #write here the alphabet use by your automaton || Exemple : A B C D a z - è _ @#");
-            write.println("#write here the transitions of your automaton#");
-            write.println("#### Exemple ####");
-            write.println("E0 B E1");
-            write.println("E0 A E1");
-            write.println("E1 3 E2");
-            write.println("#### End Exemple ####");
-            write.println("INITIAL #write here the initial state automaton#");
-            write.println("FINAL #write here the end-states of your automaton#");
+            write.println("NAME AutomatonName (without space)");
+            write.println("ALPHABET A B C D a z - è _ @ # ... 0 1 (with a space between each characters)");
+            write.println("E0 B E1 (transition of the automaton)");
+            write.println("E0 A E1 (transition of the automaton)");
+            write.println("E1 3 E2 (transition of the automaton)");
+            write.println("INITIAL E0 (just one because is a determinist automaton)");
+            write.println("FINAL E1 E2 (can have more than one state, separate with a space)");
             write.close();
             System.out.println("File create");
             try {

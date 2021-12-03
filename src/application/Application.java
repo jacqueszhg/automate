@@ -167,6 +167,7 @@ public class Application {
         }
 
         displayAutomaton(smiley);
+        downloadDotFile(smiley);
 
         System.out.println("Your string :");
         String sentence = sc.next();
@@ -248,6 +249,7 @@ public class Application {
         }
 
         displayAutomaton(hhmm);
+        downloadDotFile(hhmm);
 
         System.out.println("Your string :");
         String sentence = sc.next();
@@ -371,6 +373,11 @@ public class Application {
         }
     }
 
+    /**
+     * EN : Allow to download a .dot file of the automaton
+     * FR : Permet de télécharger un fichier .dot de l'automate
+     * @param automaton l'automate à télécharget en .dot
+     */
     public static void downloadDotFile(Automaton automaton){
         Scanner sc = new Scanner(System.in);
         System.out.println("Do you want download the .dot file of the automaton ?");

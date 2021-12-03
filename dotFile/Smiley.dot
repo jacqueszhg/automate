@@ -1,0 +1,12 @@
+digraph Smiley {
+node [shape=plaintext];
+E0 [shape=circle];
+E0 -> E1[label=":"];
+E0 -> E2[label=";"];
+E1 -> E3[label="-"];
+E1 -> E3[label="="];
+E2 -> E3[label="-"];
+E3 -> E4[label="("];
+E3 -> E4[label=")"];
+E4 [shape=doublecircle];
+}

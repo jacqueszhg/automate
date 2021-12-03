@@ -26,8 +26,9 @@ public class Application {
         System.out.println("6. French licence plate (to recognize a well-formed licence plate)");
         System.out.println("7. HH:MM:SS (to recognize a well-former hour:minute:seconde)");
         System.out.println("8. Load your own automaton");
-        System.out.println("9. Quit");
-        System.out.println("Yout choise (1-9)?");
+        System.out.println("9. Download base file for create an automaton");
+        System.out.println("10. Quit");
+        System.out.println("Yout choise (1-10)?");
         System.out.println("Then I will ask you the string to analyze, Thank you");
         System.out.println("-------------------- Menu -------------------");
     }
@@ -53,7 +54,7 @@ public class Application {
 
         //Initialization of choice variables
         int choice = 0;
-        int stop = 9;
+        int stop = 10;
 
         //Loop: The application continues to run until the user press quit
         while (choice != stop) {
@@ -120,6 +121,9 @@ public class Application {
                     pause(sc);
                     break;
                 case 9:
+                    downloadBaseFileAutomaton();
+                    break;
+                case 10:
                     System.out.println("Quit");
                     sc.close();
                     System.exit(0);
@@ -399,6 +403,37 @@ public class Application {
         if(choice == 1){
             automaton.createDotFile();
             System.out.println("Create");
+        }
+    }
+
+    /**
+     * EN : Allow to download a base file of automaton
+     * FR : Permet de télécharger un fichier de base pour la création d'automate
+     */
+    public static void downloadBaseFileAutomaton(){
+        PrintWriter write;
+        int n = 5;
+        try {
+            write = new PrintWriter(new BufferedWriter(new FileWriter("fileAutomaton/baseFile.txt")));
+            write.println("NAME #write here the name of your automaton || Exemple : Automaton1#");
+            write.println("ALPHABET #write here the alphabet use by your automaton || Exemple : A B C D a z - è _ @#");
+            write.println("#write here the transitions of your automaton#");
+            write.println("#### Exemple ####");
+            write.println("E0 B E1");
+            write.println("E0 A E1");
+            write.println("E1 3 E2");
+            write.println("#### End Exemple ####");
+            write.println("INITIAL #write here the initial state automaton#");
+            write.println("FINAL #write here the end-states of your automaton#");
+            write.close();
+            System.out.println("File create");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            System.err.println("File not create");
         }
     }
 }

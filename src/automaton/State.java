@@ -74,7 +74,7 @@ public class State {
      * FR : Retourne le dictionnaire de sortir possible pour l'état courant
      * @return EN : the dictionary of output of the state || FR :  l'ensemble des sortit possible
      */
-    public HashMap getListOut(){
+    public HashMap<Character,State> getListOut(){
         return this.listOut;
     }
 

@@ -8,13 +8,13 @@ import java.util.*;
 
 /**
  * EN : The application
- * FR : L'application
+ * || FR : L'application
  * @author : jacques-zheng
  */
 public class Application {
     /**
      * EN : Display the menu of the application in english
-     * FR :: Affichage du menu de l'application en anglais
+     * || FR :: Affichage du menu de l'application en anglais
      */
     private static void menuEN(){
         System.out.println("-------------------- Menu -------------------");
@@ -35,19 +35,19 @@ public class Application {
 
     /**
      * EN : Display the menu of the application in french
-     * FR :: Affichage du menu de l'application en français
+     * || FR :: Affichage du menu de l'application en français
      */
     private static void menuFR(){
         System.out.println("-------------------- Menu -------------------");
         System.out.println("1. Smiley (pour reconnaitre un des smileys)");
-        System.out.println("2. HH:MM (pour reconnaitre une heure:minute bien formée)");
-        System.out.println("3. JJ/MM/AAAA (pour reconnaitre une date bien formée)");
-        System.out.println("4. Adresse électronique (pour reconnaitre une adresse électronique bien formée)");
-        System.out.println("5. Polynômes (pour reconnaitre un polynôme bien formé)");
-        System.out.println("6. Plaque d'immatriculation française (pour reconnaitre une plaque d'immatriculation bien formée)");
-        System.out.println("7. HH:MM:SS (pour reconnaitre une heure:minute:seconde bien formée)");
+        System.out.println("2. HH:MM (pour reconnaitre une heure:minute bien formee)");
+        System.out.println("3. JJ/MM/AAAA (pour reconnaitre une date bien formee)");
+        System.out.println("4. Adresse electronique (pour reconnaitre une adresse electronique bien formee)");
+        System.out.println("5. Polynômes (pour reconnaitre un polynôme bien forme)");
+        System.out.println("6. Plaque d'immatriculation française (pour reconnaitre une plaque d'immatriculation bien formee)");
+        System.out.println("7. HH:MM:SS (pour reconnaitre une heure:minute:seconde bien formee)");
         System.out.println("8. Charger votre propre automate");
-        System.out.println("9. Télécharger le fichier de base pour la création d'un automate");
+        System.out.println("9. Telecharger le fichier de base pour la creation d'un automate");
         System.out.println("10. Arrêt");
         System.out.println("Votre choix (1-10)?");
         System.out.println("Je vous demanderez ensuite la chaîne à analyser, Merci");
@@ -56,7 +56,7 @@ public class Application {
 
     /**
      * EN : Pauses the application
-     * FR : Met en pause l'application
+     * || FR : Met en pause l'application
      * @param sc EN : an object Scanner || FR : un objet Scanner
      * @param language EN : the language for the display || FR : la langue pour l'affichage
      */
@@ -71,7 +71,7 @@ public class Application {
 
     /**
      * EN : Application of the automaton
-     * FR : L'application automate
+     * || FR : L'application automate
      * @param args EN : possible arguments for the application || FR : arguments possible pour l'application
      */
     public static void main(String[] args) {
@@ -170,7 +170,13 @@ public class Application {
                     load_automate_by_file("fileAutomaton/default/HHMMSS.txt",language);
                     break;
                 case 8:
-                    System.out.println("Give the name of your file in the fileAutomaton folder: ");
+                    if(language==1){
+                        System.out.println("Give the name of your file who is in the fileAutomaton folder. ");
+                        System.out.println("If your file is not create, create it now with the good syntaxe.");
+                    }else{
+                        System.out.println("Donnez le nom de votre fichier qui est dans le dossier fileAutomaton");
+                        System.out.println("Si votre fichier n'est pas créée, créée le maintenant avec la bonne syntaxe.");
+                    }
                     String name = sc.next();
                     load_automate_by_file("fileAutomaton/"+name,language);
                     break;
@@ -188,7 +194,7 @@ public class Application {
 
     /**
      * EN : The automaton to recognize a Smiley
-     * FR : L'automate qui reconnait un Smiley
+     * || FR : L'automate qui reconnait un Smiley
      * @param language EN : the language for the display || FR : la langue pour l'affichage
      */
     private static void load_smiley(int language){
@@ -243,7 +249,7 @@ public class Application {
 
     /**
      * EN : The automaton to recognize an hour in the form HH:MM
-     * FR : L'automate qui reconnait une heure dans la forme HH:MM
+     * || FR : L'automate qui reconnait une heure dans la forme HH:MM
      * @param language EN : the language for the display || FR : la langue pour l'affichage
      */
     private static void load_HHMM(int language){
@@ -332,7 +338,7 @@ public class Application {
 
     /**
      * EN : Loads any automaton with a file situate in the folder fileAutomaton
-     * FR : Charge un automate à partir d'un fichier placer dans le dossier fileAutomaton
+     * || FR : Charge un automate à partir d'un fichier placer dans le dossier fileAutomaton
      * @param fileName EN : the file containing the automaton || FR : le fichier qui coneitn l'automate
      * @param language EN : the language for the display || FR : la langue pour l'affichage
      */
@@ -433,7 +439,7 @@ public class Application {
 
     /**
      * EN : Method to ask whether we display the automaton or not
-     * FR : Méthode qui demande si on affiche l'automate ou non
+     * || FR : Methode qui demande si on affiche l'automate ou non
      * @param automaton EN : the automaton that we want display || FR : l'automate que nous voulons afficher
      * @param language EN : the language for the display || FR : la langue pour l'affichage
      */
@@ -473,8 +479,8 @@ public class Application {
 
     /**
      * EN : Allow to download a .dot file of the automaton
-     * FR : Permet de télécharger un fichier .dot de l'automate
-     * @param automaton l'automate à télécharget en .dot
+     * || FR : Permet de telecharger un fichier .dot de l'automate
+     * @param automaton l'automate à telecharget en .dot
      * @param language EN : the language for the display || FR : la langue pour l'affichage
      */
     public static void downloadDotFile(Automaton automaton,int language){
@@ -484,7 +490,7 @@ public class Application {
             System.out.println("1. yes");
             System.out.println("2. no");
         }else{
-            System.out.println("Voulez-vous télécharger le fichier .dot de l'automate ?");
+            System.out.println("Voulez-vous telecharger le fichier .dot de l'automate ?");
             System.out.println("1. oui");
             System.out.println("2. non");
         }
@@ -510,14 +516,14 @@ public class Application {
             if (language == 1){
                 System.out.println("Downloaded");
             }else{
-                System.out.println("Téléchargé");
+                System.out.println("Telecharge");
             }
         }
     }
 
     /**
      * EN : Allow to download a base file of automaton
-     * FR : Permet de télécharger un fichier de base pour la création d'automate
+     * || FR : Permet de telecharger un fichier de base pour la creation d'automate
      * @param language EN : the language for the display || FR : la langue pour l'affichage
      */
     public static void downloadBaseFileAutomaton(int language){
@@ -533,21 +539,26 @@ public class Application {
                 write.println("E1 3 E2 (transition of the automaton)");
                 write.println("INITIAL E0 (just one because is a determinist automaton)");
                 write.println("FINAL E1 E2 (can have more than one state, separate with a space)");
-                System.out.println("File create");
+                System.out.println("Create file");
             }else{
                 write.println("NAME AutomatonName (sans espace)");
-                write.println("ALPHABET A B C D a z - è _ @ # ... 0 1 (alphabet avec un espace entre chaque caratères)");
+                write.println("ALPHABET A B C D a z - è _ @ # ... 0 1 (alphabet avec un espace entre chaque carateres)");
                 write.println("E0 B E1 (transition de l'automate)");
                 write.println("E0 A E1 (transition de l'automate)");
                 write.println("E1 3 E2 (transition de l'automate)");
-                write.println("INITIAL E0 (juste un seul, car automate déterministe)");
-                write.println("FINAL E1 E2 (peut avoir plusieurs états final, toujours avec un espace entre chaque état)");
-                System.out.println("Fichier créer");
+                write.println("INITIAL E0 (juste un seul, car automate deterministe)");
+                write.println("FINAL E1 E2 (peut avoir plusieurs etats final, toujours avec un espace entre chaque etat)");
+                System.out.println("Creation du fichier");
             }
 
             write.close();
             try {
                 Thread.sleep(2000);
+                if (language==1){
+                    System.out.println("File create");
+                }else{
+                    System.out.println("Fichier créer");
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -555,7 +566,7 @@ public class Application {
             if(language==1){
                 System.err.println("File not create");
             }else{
-                System.err.println("Fichier non créer");
+                System.err.println("Fichier non creer");
             }
         }
     }

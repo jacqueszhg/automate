@@ -30,7 +30,7 @@ In the application you will find automatons by default.<br>
 Possibility to import an automaton of your creation. It should follow a specific syntax. <br>
 ![Alt text](asset/menuLoadAutomaton.jpg?raw=true "")
 
-During the execution of the application you will find a choice allowing you to create a basic file for the creation of an automaton, which will be created in the folder ``fileAutomaton`` with the name ``baseFile```
+During the execution of the application you will find a choice allowing you to create a basic file for the creation of an automaton, which will be created in the folder ``fileAutomaton`` with the name ``baseFile```<br>
 ![Alt text](asset/menuDownloadBaseFile.jpg?raw=true "")
 ```
 Example of an import file:
@@ -72,14 +72,14 @@ Télécharger le projet et importer le sur votre IDE, puis éxécuter le via vot
 ## L'application
 ### Automates par défault
 L'application utilise des automates déterministes pour vérifier une expression.<br>
-Dans l'application vous trouverez des automates par défaut.
+Dans l'application vous trouverez des automates par défaut.<br>
 ![Alt text](asset/menuAutomatonFR.jpg?raw=true "")
 
 ### Import d'automate personnel
 Possibilité d'importer un automate de votre création. Il devra suivre une syntaxe précise.<br>
 ![Alt text](asset/menuLoadAutomatonFR.jpg?raw=true "")
 
-Lors de l'éxécution de l'application vous trouverez un choix vous permettant de créer un fichier de base pour la création d'un automate, qui va être créer dans le dossier ```fileAutomaton``` avec le nom ```baseFile```
+Lors de l'éxécution de l'application vous trouverez un choix vous permettant de créer un fichier de base pour la création d'un automate, qui va être créer dans le dossier ```fileAutomaton``` avec le nom ```baseFile```<br>
 ![Alt text](asset/menuDownloadBaseFileFR.jpg?raw=true "")
 ```
 Exemple d'un fichier importable:

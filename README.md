@@ -3,8 +3,8 @@ Auteur : Jacques-Zheng <br>
 Email : jacques.zheng@etu.univ-nantes.fr
  _____________________________________________________________________________________
 # Sommaire
-1. [Read Me : English](#FRANCAIS)
-2. [Read Me : Français]()
+1. [ReadMe : English](#FRANCAIS)
+2. [ReadMe : Français]()
  _____________________________________________________________________________________
 # ENGLISH
 ## Compile and execute code

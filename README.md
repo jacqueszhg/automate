@@ -30,7 +30,7 @@ In the application you will find automatons by default.<br>
 Possibility to import an automaton of your creation. It should follow a specific syntax. <br>
 ![Alt text](asset/menuLoadAutomaton.jpg?raw=true "")
 
-During the execution of the application you will find a choice allowing you to create a basic file for the creation of an automaton, which will be created in the folder ``fileAutomaton```' with the name ``baseFile```
+During the execution of the application you will find a choice allowing you to create a basic file for the creation of an automaton, which will be created in the folder ``fileAutomaton`` with the name ``baseFile```
 ![Alt text](asset/menuDownloadBaseFile.jpg?raw=true "")
 ```
 Example of an import file:
@@ -48,7 +48,7 @@ FINAL E2 E1 (may have multiple final states, always with a space between each st
 In the ```helpCreateFileAuomate`' package, the ``WriterFile``class helps to create repetitive transitions between two states. <br>
 The result will be found in ``text.txt``. <br>
 Modify only:
--   the variable ``s````s```
+-   the variable ``s`` ``s``
 -   "stateStart" and "stateEnd" in ``write.println("stateStart"+" "+ tab[i] +" "+"stateEnd");``
 
 ### File .dot

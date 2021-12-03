@@ -1,4 +1,4 @@
-
+package application;
 
 import automaton.Automaton;
 import automaton.State;
@@ -6,9 +6,15 @@ import automaton.State;
 import java.io.*;
 import java.util.*;
 
+/**
+ * EN : The application
+ * FR : L'application
+ * @author : jacques-zheng
+ */
 public class Application {
     /**
-     * Display the menu of the application
+     * EN : Display the menu of the application
+     * FR :: Affichage du menu de l'application
      */
     private static void menu(){
         System.out.println("-------------------- Menu -------------------");
@@ -27,7 +33,8 @@ public class Application {
     }
 
     /**
-     * Pauses the application
+     * EN : Pauses the application
+     * FR : Met en pause l'application
      * @param sc an object Scanner
      */
     private static void pause(Scanner sc){
@@ -36,8 +43,9 @@ public class Application {
     }
 
     /**
-     * Application of the automaton
-     * @param args possible arguments for the application
+     * EN : Application of the automaton
+     * FR : L'application automate
+     * @param args EN : possible arguments for the application || FR : arguments possible pour l'application
      */
     public static void main(String[] args) {
         //Create the eobject Scanner
@@ -82,33 +90,33 @@ public class Application {
                     break;
                 case 3:
                     System.out.println("Your choice : JJ/MM/AAAA");
-                    load_automate_par_fichier("fileAutomaton/JJMMAAAA.txt");
+                    load_automate_by_file("fileAutomaton/JJMMAAAA.txt");
                     pause(sc);
                     break;
                 case 4:
                     System.out.println("Your choice : Email address");
-                    load_automate_par_fichier("fileAutomaton/EMAIL.txt");
+                    load_automate_by_file("fileAutomaton/EMAIL.txt");
                     pause(sc);
                     break;
                 case 5:
                     System.out.println("Your choice : Polynomial");
-                    load_automate_par_fichier("fileAutomaton/POLYNOME.txt");
+                    load_automate_by_file("fileAutomaton/POLYNOME.txt");
                     pause(sc);
                     break;
                 case 6:
                     System.out.println("Your choice : French licence plate");
-                    load_automate_par_fichier("fileAutomaton/PLAQUE.txt");
+                    load_automate_by_file("fileAutomaton/PLAQUE.txt");
                     pause(sc);
                     break;
                 case 7:
                     System.out.println("Your choice : HH:MM:SS");
-                    load_automate_par_fichier("fileAutomaton/HHMMSS.txt");
+                    load_automate_by_file("fileAutomaton/HHMMSS.txt");
                     pause(sc);
                     break;
                 case 8:
                     System.out.println("Give the name of your file in the fileAutomaton folder: ");
                     String name = sc.next();
-                    load_automate_par_fichier("fileAutomaton/"+name);
+                    load_automate_by_file("fileAutomaton/"+name);
                     pause(sc);
                     break;
                 case 9:
@@ -121,7 +129,8 @@ public class Application {
     }
 
     /**
-     * The automaton to recognize a Smiley
+     * EN : The automaton to recognize a Smiley
+     * FR : L'automate qui reconnait un Smiley
      */
     private static void load_smiley(){
         Scanner sc = new Scanner(System.in);
@@ -169,7 +178,8 @@ public class Application {
     }
 
     /**
-     * The automaton to recognize an hour in the form HH:MM
+     * EN : The automaton to recognize an hour in the form HH:MM
+     * FR : L'automate qui reconnait une heure dans la forme HH:MM
      */
     private static void load_HHMM(){
         Scanner sc = new Scanner(System.in);
@@ -249,10 +259,11 @@ public class Application {
     }
 
     /**
-     * Loads any automaton with a file
-     * @param fileName the file containing the automaton
+     * EN : Loads any automaton with a file situate in the folder fileAutomaton
+     * FR : Charge un automate à partir d'un fichier placer dans le dossier fileAutomaton
+     * @param fileName EN : the file containing the automaton || FR : le fichier qui coneitn l'automate
      */
-    private static void load_automate_par_fichier(String fileName) {
+    private static void load_automate_by_file(String fileName) {
         //Initialization to read the file
         Scanner scan = null;
         Automaton automaton = null;
@@ -318,6 +329,7 @@ public class Application {
             Scanner sc = new Scanner(System.in);
 
             displayAutomaton(automaton);
+            downloadDotFile(automaton);
 
             System.out.println("Your string :");
             String sentence = sc.nextLine();
@@ -332,8 +344,9 @@ public class Application {
     }
 
     /**
-     * Method to ask whether we display the automaton or not
-     * @param automaton the automaton that we want display
+     * EN : Method to ask whether we display the automaton or not
+     * FR : Méthode qui demande si on affiche l'automate ou non
+     * @param automaton EN : the automaton that we want display || FR : l'automate que nous voulons afficher
      */
     public static void displayAutomaton(Automaton automaton){
         Scanner sc = new Scanner(System.in);
@@ -355,6 +368,30 @@ public class Application {
 
         if(choice == 1){
             System.out.println(automaton.toString());
+        }
+    }
+
+    public static void downloadDotFile(Automaton automaton){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want download the .dot file of the automaton ?");
+        System.out.println("1. yes");
+        System.out.println("2. no");
+
+        boolean isNumber=false;
+        int choice = 0;
+        while(!isNumber) {
+            try {
+                isNumber = true;
+                choice = Integer.parseInt(sc.next());
+            } catch (Exception e) {
+                isNumber = false;
+                System.err.println("Not a number");
+            }
+        }
+
+        if(choice == 1){
+            automaton.createDotFile();
+            System.out.println("Create");
         }
     }
 }

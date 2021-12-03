@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"Application"},{"p":"automate","l":"Automate"},{"p":"automate","l":"State"},{"p":"helpCreateFileAutomate","l":"WriterFile"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"application","l":"Application"},{"p":"automaton","l":"Automaton"},{"p":"helpCreateFileAutomate","l":"CreateBaseFileAutomaton"},{"p":"automaton","l":"State"},{"p":"helpCreateFileAutomate","l":"WriterFile"}];updateSearchResults();

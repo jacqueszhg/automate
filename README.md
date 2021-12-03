@@ -19,7 +19,7 @@ Pour éxécuter le code
 ```
 java -cp out/production/Automate application.Application
 ```
-###Sur un IDE
+### Sur un IDE
 Télécharger le projet et importer le sur votre IDE, puis éxécuter le via votre IDE.
 
 ## L'application

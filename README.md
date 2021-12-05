@@ -36,7 +36,7 @@ During the execution of the application you will find a choice allowing you to c
 Example of an import file:
 
 NAME AutomatonName (without space)
-ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (with a space between each characters, can't use posix here)
+ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (with a space between each characters, can't use posix here expect the space who can be used)
 E0 B alpha 0 E1 (transition of the automaton)
 E0 A punct num E1 (transition of the automaton)
 E1 3 space E2 (transition of the automaton)
@@ -98,7 +98,7 @@ Lors de l'éxécution de l'application vous trouverez un choix vous permettant d
 Exemple d'un fichier importable:
 
 NAME AutomatonName (sans espace)
-ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (avec un espace entre chaque caractères, les posix ne sont pas utilisable ici)
+ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (avec un espace entre chaque caractères, les posix ne sont pas utilisable ici sauf le "space" est accpeté)
 E0 B alpha 0 E1 (transition de l'automate)
 E0 A punct num E1 (transition de l'automate)
 E1 3 space E2 (transition de l'automate)

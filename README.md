@@ -54,7 +54,7 @@ FINAL E1 E2 (can have more than one state, separate with a space)
 | punct         |][!"#$%&'()*+,./:;<=>?@\^_`{}~-&#x2502;|   Punctuation characters |
 | num           |        0-9        |      Decimal digits |
 | space         |          \t\r\n\v\f      |      Space characters |
-| [X..Y]         |          X-Z      |      All characters between X and Y |
+| [X..Y]         |          X-Y      |      All characters between X and Y |
 
 ###### Detection error
 If the file of the automaton contain an error the application will detect and write an error message on your terminal.<br>
@@ -116,7 +116,7 @@ FINAL E1 E2 (peut avoir plusieurs etats final, toujours avec un espace entre cha
 | punct         |][!"#$%&'()*+,./:;<=>?@\^_`{}~-&#x2502;|   Caractères de ponctuation |
 | num           |        0-9        |      Chiffres décimaux  |
 | space         |          \t\r\n\v\f      |      Caractères d'espacement |
-| [X..Y]         |          X-Z      |      Tout les caractères entre X et Y |
+| [X..Y]         |          X-Y      |      Tout les caractères entre X et Y |
 ###### Detection d'erreur
 Si le fichier de l'automate présente une erreur l'application le signalera<br>
 <i><u>Erreur de syntaxe :</u></i><br>

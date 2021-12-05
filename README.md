@@ -129,3 +129,5 @@ Vous aurez aussi la possibilité de pouvoir téléchager un fichier .dot de l'au
 Ce choix vous sera demandé, après que vous aurez choisi un automate.<br>
 ![Alt text](asset/graphviz.svg?raw=true "")
 
+
+| Tables | Are | Cool | |----------|:-------------:|------:| | col 1 is| left-aligned | $1600 |

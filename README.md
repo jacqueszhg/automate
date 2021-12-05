@@ -47,7 +47,7 @@ FINAL E1 E2 (can have more than one state, separate with a space)
 ```
 ###### Words that can be used in the transitions, to simplify writing
 |    POSIX   |     ASCII    |   Description |
-| :------------- |: -------------: | ---------: |
+| ---------- |------------- | ------------- |
 | alphaUpper    |        A-Z        |     Capital letters |
 | alphaLower    |        a-z	        |      Lower case letters|
 | alpha         |        A-Za-z	        |      Alphabetic characters |
@@ -109,7 +109,7 @@ FINAL E1 E2 (peut avoir plusieurs etats final, toujours avec un espace entre cha
 ```
 ###### Mots qui peuvent être utilisés dans les transitions, pour simplifier l'écriture
 |    POSIX   |     ASCII    |   Description |
-| :------------- |: -------------: | ---------: |
+| ---------- | ------------ | ------------- |
 | alphaUpper    |        A-Z        |      Lettre capitales |
 | alphaLower    |        a-z	        |      Lettres en minuscule|
 | alpha         |        A-Za-z	        |      Caractères alphabétiques |
@@ -128,6 +128,3 @@ Si le fichier de l'automate présente une erreur l'application le signalera<br>
 Vous aurez aussi la possibilité de pouvoir téléchager un fichier .dot de l'automate, qui sera sauvegardé dans le dossier ```dotFile```.<br>
 Ce choix vous sera demandé, après que vous aurez choisi un automate.<br>
 ![Alt text](asset/graphviz.svg?raw=true "")
-
-
-| Tables | Are | Cool | |----------|:-------------:|------:| | col 1 is| left-aligned | $1600 |

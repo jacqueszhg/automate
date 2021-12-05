@@ -120,9 +120,9 @@ FINAL E1 E2 (peut avoir plusieurs etats final, toujours avec un espace entre cha
 ###### Detection d'erreur
 Si le fichier de l'automate présente une erreur l'application le signalera<br>
 <i><u>Erreur de syntaxe :</u></i><br>
-![Alt text](asset/automatonErrorSyntaxe.png?raw=true "")<br>
+![Alt text](asset/automatonErrorSyntaxeFR.png?raw=true "")<br>
 <i><u>Erreur dans des transitions :</u></i><br>
-![Alt text](asset/automatonErrorCharacter.png?raw=true "")<br>
+![Alt text](asset/automatonErrorCharacterFR.png?raw=true "")<br>
 
 ### Fichier .dot
 Vous aurez aussi la possibilité de pouvoir téléchager un fichier .dot de l'automate, qui sera sauvegardé dans le dossier ```dotFile```.<br>

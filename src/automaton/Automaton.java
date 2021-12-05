@@ -223,12 +223,21 @@ public class Automaton {
         String infoListOutPut ="";
         for(State s : S){
             HashMap<Character, State> h = s.getListOut();
+            HashMap<State,ArrayList<Character>> map = new HashMap<>();
             for(Character key : h.keySet()){
-                //infoensembleSortit += "{"+s.getnom()+","+key+","+h.get(key).getnom()+"}";
-                infoListOutPut += "{'"+key+"'|"+s.getName()+"-->"+h.get(key).getName()+" }";
+                if(map.containsKey(h.get(key))){
+                    map.get(h.get(key)).add(key);
+                }else{
+                    map.put(h.get(key),new ArrayList<Character>());
+                    map.get(h.get(key)).add(key);
+                }
             }
-            infoListOutPut +="\n";
+            for (State state : map.keySet()){
+                String string = map.get(state).toString();
+                infoListOutPut += s.getName()+" -> "+state.getName()+string+"\n";
+            }
         }
+
         return "Automate "+ name +" {\n" +
                 "S=[" + infoS +
                 ", \nA=" + A +
@@ -254,8 +263,18 @@ public class Automaton {
                 if(this.Sf.contains(s)){
                     write.println(s.getName() + " [shape=doublecircle];");
                 }
+                HashMap<State,ArrayList<Character>> map = new HashMap<>();
                 for(Character key : h.keySet()){
-                    write.println(s.getName()+" -> "+h.get(key).getName()+"[label=\""+key+"\"];");
+                    if(map.containsKey(h.get(key))){
+                        map.get(h.get(key)).add(key);
+                    }else{
+                        map.put(h.get(key),new ArrayList<Character>());
+                        map.get(h.get(key)).add(key);
+                    }
+                }
+                for (State state : map.keySet()){
+                    String string = map.get(state).toString();
+                    write.println(s.getName()+" -> "+state.getName()+"[label=\""+string.substring(1,string.length()-1)+"\"];");
                 }
             }
             write.println("}");

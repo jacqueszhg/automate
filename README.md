@@ -35,25 +35,38 @@ During the execution of the application you will find a choice allowing you to c
 ```
 Example of an import file:
 
-NAME AutomateExample(name without space)
-ALPHABET A B C ... Z (alphabet with a space between each carat)
-E0 TO E1 (state transition)
-E0 B E1 (state transition)
-E1 0 E2 (state transition)
-E1 4 E2 (state transition)
-INITIAL E0 (just one, because deterministic automaton)
-FINAL E2 E1 (may have multiple final states, always with a space between each state)
+NAME AutomatonName (without space)
+ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (with a space between each characters, can't use posix here)
+E0 B alpha 0 E1 (transition of the automaton)
+E0 A punct num E1 (transition of the automaton)
+E1 3 space E2 (transition of the automaton)
+E2 3 A Z E R T E3 (transition of the automaton)
+E3 4 E4 (transition of the automaton)
+INITIAL E0 (just one because is a determinist automaton)
+FINAL E1 E2 (can have more than one state, separate with a space)
 ```
-###### Help for creating automate file
-In the ```helpCreateFileAuomate`' package, the ``WriterFile``class helps to create repetitive transitions between two states. <br>
-The result will be found in ``text.txt``. <br>
-Modify only:
--   the variable ``s`` ``s``
--   "stateStart" and "stateEnd" in ``write.println("stateStart"+" "+ tab[i] +" "+"stateEnd");``
+###### Words that can be used in the transitions, to simplify writing
+|    POSIX   |     ASCII    |   Description |
+| :------------- |: -------------: | ---------: |
+| alphaUpper    |        A-Z        |     Capital letters |
+| alphaLower    |        a-z	        |      Lower case letters|
+| alpha         |        A-Za-z	        |      Alphabetic characters |
+| punct         |][!"#$%&'()*+,./:;<=>?@\^_`{}~-&#x2502;|   Punctuation characters |
+| num           |        0-9        |      Decimal digits |
+| space         |          \t\r\n\v\f      |      Space characters |
+| [X..Y]         |          X-Z      |      All characters between X and Y |
+
+###### Detection error
+If the file of the automaton contain an error the application will detect and write an error message on your terminal.<br>
+<i><u>Error of syntaxe :</u></i><br>
+![Alt text](asset/automatonErrorSyntaxe.png?raw=true "")<br>
+<i><u>Error in transition :</u></i><br>
+![Alt text](asset/automatonErrorCharacter.png?raw=true "")<br>
 
 ### File .dot
-You will also have the option of uploading a . dot file from the PLC, which will be saved in the ```dotFile```folder. <br>
+You will also have the option of uploading a .dot file from the automaton, which will be saved in the ```dotFile```folder. <br>
 This choice will be requested after you have chosen an automaton. <br>
+![Alt text](asset/graphviz.svg?raw=true "")
  _____________________________________________________________________________________
 # FRANCAIS
 ## Compiler et exécuter le code
@@ -84,23 +97,35 @@ Lors de l'éxécution de l'application vous trouverez un choix vous permettant d
 ```
 Exemple d'un fichier importable:
 
-NAME AutomateExemple(nom sans espace)
-ALPHABET A B C ... Z (alphabet avec un espace entre chaque caratères)
-E0 A E1 (transition de l'automate)
-E0 B E1 (transition de l'automate)
-E1 0 E2 (transition de l'automate)
-E1 4 E2 (transition de l'automate)
-INITIAL E0 (juste un seul, car automate déterministe)
-FINAL E2 E1 (peut avoir plusieurs états final, toujours avec un espace entre chaque état)
+NAME AutomatonName (sans espace)
+ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (avec un espace entre chaque caractères, les posix ne sont pas utilisable ici)
+E0 B alpha 0 E1 (transition de l'automate)
+E0 A punct num E1 (transition de l'automate)
+E1 3 space E2 (transition de l'automate)
+E2 3 A Z E R T E3 (transition de l'automate)
+E3 4 E4 (transition de l'automate)
+INITIAL E0 (juste un seul, car automate deterministe)
+FINAL E1 E2 (peut avoir plusieurs etats final, toujours avec un espace entre chaque etat)
 ```
-###### Aide pour création fichier automate
-Dans le package ``helpCreateFileAuomate``, la classe ``WriterFile`` aide pour la création des transitions répétitif entre deux états.<br>
-Le résultat se trouvera dans ``text.txt``.<br>
-Modifier seulement :
--   la variable ```s``` avec les caractères de transition
--   "stateStart" et "stateEnd" dans ``write.println("stateStart"+" "+ tab[i] +" "+"stateEnd");``
+###### Mots qui peuvent être utilisés dans les transitions, pour simplifier l'écriture
+|    POSIX   |     ASCII    |   Description |
+| :------------- |: -------------: | ---------: |
+| alphaUpper    |        A-Z        |      Lettre capitales |
+| alphaLower    |        a-z	        |      Lettres en minuscule|
+| alpha         |        A-Za-z	        |      Caractères alphabétiques |
+| punct         |][!"#$%&'()*+,./:;<=>?@\^_`{}~-&#x2502;|   Caractères de ponctuation |
+| num           |        0-9        |      Chiffres décimaux  |
+| space         |          \t\r\n\v\f      |      Caractères d'espacement |
+| [X..Y]         |          X-Z      |      Tout les caractères entre X et Y |
+###### Detection d'erreur
+Si le fichier de l'automate présente une erreur l'application le signalera<br>
+<i><u>Erreur de syntaxe :</u></i><br>
+![Alt text](asset/automatonErrorSyntaxe.png?raw=true "")<br>
+<i><u>Erreur dans des transitions :</u></i><br>
+![Alt text](asset/automatonErrorCharacter.png?raw=true "")<br>
 
 ### Fichier .dot
 Vous aurez aussi la possibilité de pouvoir téléchager un fichier .dot de l'automate, qui sera sauvegardé dans le dossier ```dotFile```.<br>
 Ce choix vous sera demandé, après que vous aurez choisi un automate.<br>
+![Alt text](asset/graphviz.svg?raw=true "")
 

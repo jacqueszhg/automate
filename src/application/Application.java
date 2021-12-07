@@ -233,67 +233,103 @@ public class Application {
         Automaton automaton = null;
         boolean badSyntaxe = false;
         boolean ajouter = true;
-        int errorLine = 0;
+        boolean etatPresent = true;
+        int errorLine = 2;
 
         try {
             scan = new Scanner(new File(fileName));
 
+            if (scan.hasNextLine()){
+                String name = scan.nextLine();
+                String lineName[] = name.split(" ");
+                //Initialization of the automaton with is name
+                if(lineName[0].equals("NAME")){
+                    automaton = new Automaton(lineName[1]);
+                }else{
+                    badSyntaxe = true;
+                    errorLine = 1;
+                }
+            }
+
+            if (scan.hasNextLine()){
+                String alphabet = scan.nextLine();
+                String lineAlphabet[] = alphabet.split(" ");
+                //Initialization of the alphabet
+                if(lineAlphabet[0].equals("ALPHABET")){
+                    ArrayList<Character> alphabetList = new ArrayList<>();
+                    for (int i = 1; i < lineAlphabet.length; i++) {
+                        Character c = null;
+                        if (lineAlphabet[i].equals("space")) {
+                            c = ' ';
+                        } else {
+                            c = lineAlphabet[i].charAt(0);
+                        }
+                        alphabetList.add(c);
+                    }
+                    automaton.setAlphabet(alphabetList);
+                }else{
+                    badSyntaxe = true;
+                    errorLine = 2;
+                }
+            }
+
+
+
             //Loop: Reads the file to the end
-            while (scan.hasNextLine() && !badSyntaxe && ajouter) {
+            while (scan.hasNextLine() && !badSyntaxe && ajouter && etatPresent) {
                 errorLine++;
                 String line = scan.nextLine();
 
                 //Split the line
                 String[] wordLine = line.split(" ");
 
-                //Initialization of the automaton with is name
-                if (wordLine[0].equals("NAME")) {
-                    automaton = new Automaton(wordLine[1]);
-
-                    //Initialization of the alphabet
-                } else if (wordLine[0].equals("ALPHABET")) {
-                    ArrayList<Character> alphabet = new ArrayList<>();
-                    for (int i = 1; i < wordLine.length; i++) {
-                        Character c = null;
-                        if (wordLine[i].equals("space")) {
-                            c = ' ';
-                        } else {
-                            c = wordLine[i].charAt(0);
-                        }
-                        alphabet.add(c);
-                    }
-                    automaton.setAlphabet(alphabet);
-
                     //Initialization of the initial state
-                } else if (wordLine[0].equals("INITIAL")) {
-                    State etatInitiale = automaton.getState(wordLine[1]);
-                    automaton.setInitialState(etatInitiale);
+                if (wordLine[0].equals("INITIAL")) {
+                    if(wordLine.length ==2){
+                        State etatInitiale = automaton.getState(wordLine[1]);
+                        if (etatInitiale == null){
+                            etatPresent = false;
+                        }else{
+                            automaton.setInitialState(etatInitiale);
+                        }
+                    }else {
+                        badSyntaxe = true;
+                    }
+
 
                     //Initialization of the end-states
                 } else if (wordLine[0].equals("FINAL")) {
-                    ArrayList<State> finaux = new ArrayList<>();
-                    for (int i = 1; i < wordLine.length; i++) {
-                        State etat = automaton.getState(wordLine[i]);
-                        finaux.add(etat);
+                    if(wordLine.length >= 2){
+                        ArrayList<State> finaux = new ArrayList<>();
+                        for (int i = 1; i < wordLine.length; i++) {
+                            State etat = automaton.getState(wordLine[i]);
+                            if (etat == null){
+                                etatPresent = false;
+                            }else {
+                                finaux.add(etat);
+                            }
+                        }
+                        automaton.setEndState(finaux);
+                    }else {
+                        badSyntaxe = true;
                     }
-                    automaton.setEndState(finaux);
 
                     //Initialization of states and transitions
-                } else if(wordLine.length  > 2){
+                } else if(wordLine[0].equals("TRANSITION")){
                     //Check if the automaton contain or not the states
-                    if (!automaton.containStateName(wordLine[0])) {
-                        automaton.addState(new State(wordLine[0]));
+                    if (!automaton.containStateName(wordLine[1])) {
+                        automaton.addState(new State(wordLine[1]));
                     }
                     if (!automaton.containStateName(wordLine[wordLine.length-1])) {
                         automaton.addState(new State(wordLine[wordLine.length-1]));
                     }
 
                     //Get the sates use in the transition
-                    State state1 = automaton.getState(wordLine[0]);
+                    State state1 = automaton.getState(wordLine[1]);
                     State state2 = automaton.getState(wordLine[wordLine.length-1]);
 
                     //Add transition  : state1 to state2
-                    for (int i = 1; i < wordLine.length-1; i++){
+                    for (int i = 2; i < wordLine.length-1; i++){
                         if(wordLine[i].equals("alphaUpper")){
                             for(Character c = 'A'; c <= 'Z'; c++){
                                 ajouter = automaton.addTransition(state1,c,state2);
@@ -343,7 +379,7 @@ public class Application {
                 }
             }
 
-            if(!badSyntaxe && ajouter){
+            if(!badSyntaxe && ajouter && etatPresent){
                 if(language == 1){
                     System.out.println("Your choice : "+automaton.getName());
                 }else{
@@ -375,11 +411,23 @@ public class Application {
                     }else{
                         System.err.println("Utilisation de caractère non présent dans l'alphabet à la ligne "+errorLine);
                     }
-                }else{
+                }else if(badSyntaxe){
                     if(language == 1){
                         System.err.println("Bad syntaxe in the file at line "+errorLine);
                     }else{
                         System.err.println("Mauvaise syntaxe dans le fichier à la ligne "+errorLine);
+                    }
+                }else if(!etatPresent){
+                    if(language == 1){
+                        System.err.println("State not define at line "+errorLine);
+                    }else{
+                        System.err.println("Etat non defini à la ligne "+errorLine);
+                    }
+                }else {
+                    if(language == 1){
+                        System.err.println("Unknown error at line "+errorLine);
+                    }else{
+                        System.err.println("Erreur inconnue à la ligne "+errorLine);
                     }
                 }
 

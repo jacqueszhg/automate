@@ -62,6 +62,8 @@ If the file of the automaton contain an error the application will detect and wr
 ![Alt text](asset/automatonErrorSyntaxe.png?raw=true "")<br>
 <i><u>Error in transition :</u></i><br>
 ![Alt text](asset/automatonErrorCharacter.png?raw=true "")<br>
+<i><u>Error state not define :</u></i><br>
+![Alt text](asset/automatonErrorState.png?raw=true "")<br>
 
 ### File .dot
 You will also have the option of uploading a .dot file from the automaton, which will be saved in the ```dotFile```folder. <br>
@@ -123,6 +125,8 @@ Si le fichier de l'automate présente une erreur l'application le signalera<br>
 ![Alt text](asset/automatonErrorSyntaxeFR.png?raw=true "")<br>
 <i><u>Erreur dans des transitions :</u></i><br>
 ![Alt text](asset/automatonErrorCharacterFR.png?raw=true "")<br>
+<i><u>Erreur dans des transitions :</u></i><br>
+![Alt text](asset/automatonErrorStateFR.png?raw=true "")<br>
 
 ### Fichier .dot
 Vous aurez aussi la possibilité de pouvoir téléchager un fichier .dot de l'automate, qui sera sauvegardé dans le dossier ```dotFile```.<br>

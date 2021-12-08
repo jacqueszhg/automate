@@ -37,11 +37,11 @@ Example of an import file:
 
 NAME AutomatonName (without space)
 ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (with a space between each characters, can't use posix here expect the space who can be used)
-E0 B alpha 0 E1 (transition of the automaton)
-E0 A punct num E1 (transition of the automaton)
-E1 3 space E2 (transition of the automaton)
-E2 3 A Z E R T E3 (transition of the automaton)
-E3 4 E4 (transition of the automaton)
+TRANSITION E0 B alpha 0 E1 (transition of the automaton)
+TRANSITION E0 A punct num E1 (transition of the automaton)
+TRANSITION E1 3 space E2 (transition of the automaton)
+TRANSITION E2 3 A Z E R T E3 (transition of the automaton)
+TRANSITION E3 4 E4 (transition of the automaton)
 INITIAL E0 (just one because is a determinist automaton)
 FINAL E1 E2 (can have more than one state, separate with a space)
 ```
@@ -101,11 +101,11 @@ Exemple d'un fichier importable:
 
 NAME AutomatonName (sans espace)
 ALPHABET A Z E C D Z A a c d f r t z - è _ @ space # ... 0 1 (avec un espace entre chaque caractères, les posix ne sont pas utilisable ici sauf le "space" est accpeté)
-E0 B alpha 0 E1 (transition de l'automate)
-E0 A punct num E1 (transition de l'automate)
-E1 3 space E2 (transition de l'automate)
-E2 3 A Z E R T E3 (transition de l'automate)
-E3 4 E4 (transition de l'automate)
+TRANSITION E0 B alpha 0 E1 (transition de l'automate)
+TRANSITION E0 A punct num E1 (transition de l'automate)
+TRANSITION E1 3 space E2 (transition de l'automate)
+TRANSITION E2 3 A Z E R T E3 (transition de l'automate)
+TRANSITION E3 4 E4 (transition de l'automate)
 INITIAL E0 (juste un seul, car automate deterministe)
 FINAL E1 E2 (peut avoir plusieurs etats final, toujours avec un espace entre chaque etat)
 ```
